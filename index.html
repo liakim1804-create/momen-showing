@@ -27,8 +27,8 @@
     overflow-x: hidden;
   }
   /* 전체 높이 = 디자인 시스템 벤토 끝(9570.75 + 묶음 위치 · 히어로 220vh · 이륙 이미지 560vh · ENJOY 160vh) + 아래 여백 228.
-     = 940vh + (9570.75 − 415 − 727 + 228) + 이동량 */
-  .page { position: relative; width: 100%; height: calc(940vh + 8656.75 * var(--u) + var(--shift)); }
+     = 890vh + (9570.75 − 415 − 309.5 + 228) + 이동량 */
+  .page { position: relative; width: 100%; height: calc(890vh + 9074.25 * var(--u) + var(--shift)); }
 
   /* 히어로 — 처음엔 창문 블라인드가 닫혀 있고, 스크롤하면 블라인드가 위로 걷히며 창밖이 드러난다.
      .hero(길) = 무대 높이 + 스크롤 120vh. 무대(.stage)는 길 안에서 화면 위에 붙어 있다.
@@ -70,7 +70,7 @@
   /* 히어로 끝(100vh + 240, 스크롤 120vh 뒤) + 80 · 워드마크 260 · 400 에서 In to Out Journey — 아래 묶음은 시안 숫자 그대로(1395 → …) */
   .flow { left: 0; top: calc(220vh + (240 + 80 + 260 + 400 - 1395) * var(--u)); width: 100%; bottom: 0; }
   .abs { position: absolute; }
-  .after { left: 0; width: 100%; top: calc(560vh - 727 * var(--u)); bottom: 0; }
+  .after { left: 0; width: 100%; top: calc(510vh - 309.5 * var(--u)); bottom: 0; }   /* Core Principle 끝(2407.5 + 510vh) + 59 에 BEFORE TAKEOFF(2776) */
 
   /* 제목 + 설명 묶음(Frame 75 · 76) */
   .block { left: calc(110 * var(--u)); display: flex; flex-direction: column; gap: calc(32 * var(--u)); align-items: flex-start; word-break: break-word; }
@@ -79,9 +79,9 @@
 
   /* Rectangle 9 — 이륙 이미지. 스크롤하면 --p(0→1)에 따라 양옆으로 꽉 차고 곡률이 사라진다.
      높이는 그대로 두고, 이미지는 가운데 기준으로 채워서 늘어나도 찌그러지지 않는다 */
-  /* Continuity — In to Out Journey 아래 228 에서 처음부터 화면 가득(지구 · Midjourney). 길 400vh 안에서 무대가 붙어 있고,
-     내리면 글 → 타임라인이 한 단계씩 뜬다 */
-  .cont-track { left: 0; width: 100%; top: calc(1762 * var(--u)); height: 400vh; }
+  /* Core Principle — 이륙 이미지 아래 228 에서 처음부터 화면 가득(지구 · Midjourney). 길 400vh 안에서 무대가 붙어 있고,
+     내리면 글 → 타임라인이 한 단계씩 뜬다. 이미지 끝(2179.5 + 110vh) + 228 */
+  .cont-track { left: 0; width: 100%; top: calc(2407.5 * var(--u) + 110vh); height: 400vh; }
   .cont-stage { position: sticky; top: 0; width: 100%; height: 100vh; overflow: hidden; background: #0a1421; }
   /* 지구 — 파란 기를 덜어 비행기 사진 · 페이지 네이비(#0a1421)와 같은 톤으로 */
   .cont-stage::before { content: ""; position: absolute; inset: 0; background: url("img/continuity-earth.jpg") 50% 50% / cover no-repeat;
@@ -89,8 +89,9 @@
   .cont-stage > * { position: relative; z-index: 1; }
   .cont-stage::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; pointer-events: none;
     background: linear-gradient(180deg, rgba(4,8,15,0) 0%, rgba(4,8,15,.5) 100%); }
-  /* 이륙 이미지 — Continuity 아래 228. 카드(1700 × 1075)로 올라와 화면 가득 펼쳐진 뒤 잠깐(60vh) 머물렀다 지나간다 */
-  .photo-track { left: 0; width: 100%; top: calc(1990 * var(--u) + 400vh); height: 160vh; }
+  /* 이륙 이미지 — Overview 바로 아래(시안 자리 1642, 텍스트 아래 108). 카드(1700 × 1075)로 올라와 화면 가득 펼쳐진 뒤 잠깐(60vh) 머물렀다 지나간다.
+     무대 가운데에 카드가 오므로, 접힌 카드가 1642 에 놓이게 길을 둔다 */
+  .photo-track { left: 0; width: 100%; top: calc((1642 + 537.5) * var(--u) - 50vh); height: 160vh; }
   .photo-stage { position: sticky; top: 0; width: 100%; height: 100vh; }
   .photo { --p: 0; --q: 0; --h: calc(1075 * var(--u) + (100vh - 1075 * var(--u)) * var(--p));
     left: calc(110 * (1 - var(--p)) * var(--u)); top: calc((100vh - var(--h)) / 2); width: calc((1700 + 220 * var(--p)) * var(--u)); height: var(--h);
@@ -303,17 +304,6 @@
     <p>MOMEN은 좌석에 앉는 순간부터 여행지에 도착한 이후까지, 비행기 안과 밖의 모든 시간을 하나의 여정으로 잇는 항공사 IFE 서비스입니다.</p>
   </section>
 
-  <!-- Continuity — 처음부터 화면 가득, 내리면 글 → 타임라인 -->
-  <section class="abs cont-track" aria-label="CORE PRINCIPLE">
-    <div class="cont-stage">
-      <div class="journey">
-        <h2>CORE PRINCIPLE</h2>
-        <p>정해진 기능을 오가는 기존 IFE와 달리, MOMEN은 승객의 시간과 상황에 맞춰<br>필요한 경험이 자연스럽게 이어지도록 설계했습니다.</p>
-      </div>
-      <ol class="jt" aria-label="비행 단계"><li>BEFORE TAKEOFF</li><li>IN FLIGHT</li><li>BEFORE LANDING</li></ol>
-    </div>
-  </section>
-
   <!-- 이륙 이미지 — 카드로 올라와 화면 가득 펼쳐진 뒤 지나간다 -->
   <div class="abs photo-track">
     <div class="photo-stage">
@@ -321,7 +311,18 @@
     </div>
   </div>
 
-  <!-- 여기부터는 이미지 끝(1990 + 400vh + 160vh)에서 59 아래 BEFORE TAKEOFF(2776) 기준 — 안쪽 위치는 시안 숫자 그대로 -->
+  <!-- Core Principle — 처음부터 화면 가득, 내리면 글 → 타임라인 -->
+  <section class="abs cont-track" aria-label="Core Principle">
+    <div class="cont-stage">
+      <div class="journey">
+        <h2>Core Principle</h2>
+        <p>정해진 기능을 오가는 기존 IFE와 달리, MOMEN은 승객의 시간과 상황에 맞춰<br>필요한 경험이 자연스럽게 이어지도록 설계했습니다.</p>
+      </div>
+      <ol class="jt" aria-label="비행 단계"><li>BEFORE TAKEOFF</li><li>IN FLIGHT</li><li>BEFORE LANDING</li></ol>
+    </div>
+  </section>
+
+  <!-- 여기부터는 Core Principle 끝(2407.5 + 510vh)에서 59 아래 BEFORE TAKEOFF(2776) 기준 — 안쪽 위치는 시안 숫자 그대로 -->
   <div class="abs after">
 
   <h2 class="abs phase rv">BEFORE TAKEOFF</h2>
