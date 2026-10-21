@@ -3,13 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preload" href="fonts/SF-Pro-Text-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/NotoSansKR-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/earth-bg.jpg" as="image">
 <title>MOMEN — IN TO OUT Journey</title>
 <style>
-  @font-face { font-family: "SF Pro Text"; src: url("fonts/SF-Pro-Text-Regular.otf") format("opentype"); font-weight: 400; ascent-override: 85.546%; descent-override: 14.454%; line-gap-override: 0%; }
-  @font-face { font-family: "SF Pro Text"; src: url("fonts/SF-Pro-Text-Medium.otf") format("opentype"); font-weight: 500; ascent-override: 85.546%; descent-override: 14.454%; line-gap-override: 0%; }
-  @font-face { font-family: "Noto Sans"; src: url("fonts/NotoSans-subset.ttf") format("truetype"); font-weight: 100 900; unicode-range: U+2027; }
-  @font-face { font-family: "Noto Sans KR"; src: url("fonts/NotoSansKR-Variable.ttf") format("truetype"); font-weight: 100 900; }
-  @font-face { font-family: "GT America Expanded"; src: url("fonts/GT-America-Expanded-Regular-Trial.otf") format("opentype"); font-weight: 400; }
+  @font-face { font-family: "SF Pro Text"; src: url("fonts/SF-Pro-Text-Regular.woff2") format("woff2"); font-display: swap; font-weight: 400; ascent-override: 85.546%; descent-override: 14.454%; line-gap-override: 0%; }
+  @font-face { font-family: "SF Pro Text"; src: url("fonts/SF-Pro-Text-Medium.woff2") format("woff2"); font-display: swap; font-weight: 500; ascent-override: 85.546%; descent-override: 14.454%; line-gap-override: 0%; }
+  @font-face { font-family: "Noto Sans"; src: url("fonts/NotoSans-subset.woff2") format("woff2"); font-display: swap; font-weight: 100 900; unicode-range: U+2027; }
+  @font-face { font-family: "Noto Sans KR"; src: url("fonts/NotoSansKR-Variable.woff2") format("woff2"); font-display: swap; font-weight: 100 900; }
+  @font-face { font-family: "GT America Expanded"; src: url("fonts/GT-America-Expanded-Regular.woff2") format("woff2"); font-display: swap; font-weight: 400; }
 
   :root {
     --white: #ffffff;
@@ -457,7 +460,7 @@
   <!-- 1. 온보딩 (151:1732) -->
   <section class="screen is-active" id="onboarding" data-node-id="151:1732">
     <!-- 배경 지구 = MOMEN AI: 지구가 천천히 자전하고, 대기권 띠를 따라 빛이 호흡·흐름 -->
-    <div class="abs earth-bg ob-earth"><img src="assets/earth-bg.png" alt=""></div>
+    <div class="abs earth-bg ob-earth"><img src="assets/earth-bg.jpg" alt=""></div>
     <canvas class="abs ob-globe" id="ob-globe" width="1920" height="1080" aria-hidden="true"></canvas>
     <div class="abs ob-shade" aria-hidden="true"></div>
     <p class="abs logo" data-go="mode" style="left:139px; top:60px;">MOMEN</p>
@@ -503,7 +506,7 @@
 
   <!-- 2. 모드 선택 (151:1914) -->
   <section class="screen" id="mode" data-node-id="151:1914">
-    <div class="abs earth-bg"><img src="assets/earth-bg.png" alt=""></div>
+    <div class="abs earth-bg"><img src="assets/earth-bg.jpg" alt=""></div>
     <p class="abs logo" data-go="mode" style="left:139px; top:60px;">MOMEN</p>
 
     <div class="abs row16 status-1">
@@ -548,7 +551,7 @@
     <!-- 세로 스크롤 영역 (상단 바는 고정) -->
     <div class="home-scroll" id="home-scroll">
       <div class="home-content">
-        <div class="abs poster"><img src="assets/interstellar.png" alt=""></div>
+        <div class="abs poster"><img src="assets/interstellar.jpg" alt=""></div>
         <div class="abs home-base"></div>
         <div class="abs fade" style="top:175px; height:538px;"></div>
 
@@ -629,7 +632,7 @@
 
   <!-- 4. 재생 (151:1859) -->
   <section class="screen enjoy" id="enjoy-player" data-node-id="151:1859">
-    <div class="abs poster"><img src="assets/interstellar.png" alt=""></div>
+    <div class="abs poster"><img src="assets/interstellar.jpg" alt=""></div>
     <p class="abs logo logo--center" data-go="mode">MOMEN</p>
 
     <!-- 뒤로가기 (160:1989) -->
@@ -682,7 +685,7 @@
 
   <!-- 5. REST (109:991) -->
   <section class="screen rest" id="rest" data-node-id="109:991">
-    <div class="abs rest-bg"><img src="assets/rest-bg.png" alt=""></div>
+    <div class="abs rest-bg"><img src="assets/rest-bg.jpg" alt=""></div>
     <p class="abs logo logo--center" data-go="mode">MOMEN</p>
 
     <div class="abs nav-left">

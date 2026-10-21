@@ -12,3 +12,10 @@ img/travel-street.jpg
 fonts/*.otf
 img/takeoff-front.png
 img/generated/
+
+# 프로토타입 복사본 — 원본 큰 폰트 · PNG(페이지는 WOFF2 · JPG 를 쓴다)
+prototype/fonts/*.otf
+prototype/fonts/*.ttf
+prototype/assets/interstellar.png
+prototype/assets/earth-bg.png
+prototype/assets/rest-bg.png
