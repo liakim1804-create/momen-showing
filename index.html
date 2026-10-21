@@ -28,7 +28,7 @@
   }
   /* 전체 높이 = 디자인 시스템 벤토 끝(9570.75 + 묶음 위치 · 히어로 220vh · 이륙 이미지 560vh · ENJOY 160vh) + 아래 여백 228.
      = 890vh + (9570.75 − 415 − 309.5 + 228) + 이동량 */
-  .page { position: relative; width: 100%; height: calc(890vh + 9365.25 * var(--u) + var(--shift)); }
+  .page { position: relative; width: 100%; height: calc(890vh + 9623.25 * var(--u) + var(--shift)); }
 
   /* 히어로 — 처음엔 창문 블라인드가 닫혀 있고, 스크롤하면 블라인드가 위로 걷히며 창밖이 드러난다.
      .hero(길) = 무대 높이 + 스크롤 120vh. 무대(.stage)는 길 안에서 화면 위에 붙어 있다.
@@ -70,9 +70,14 @@
   /* 히어로 끝(100vh + 240, 스크롤 120vh 뒤) + 80 · 워드마크 260 · 400 에서 In to Out Journey — 아래 묶음은 시안 숫자 그대로(1395 → …) */
   .flow { left: 0; top: calc(220vh + (240 + 80 + 260 + 400 - 1395) * var(--u)); width: 100%; bottom: 0; }
   .abs { position: absolute; }
-  .ov-card { width: calc(1700 * var(--u)); height: calc(310 * var(--u)); padding: calc(80 * var(--u)); justify-content: center;
-    border-radius: calc(40 * var(--u)); background: #111a23; }
-  .after { left: 0; width: 100%; top: calc(510vh - 18.5 * var(--u)); bottom: 0; }   /* 이륙 이미지 끝(2698.5 + 510vh) + 59 에 BEFORE TAKEOFF(2776) */
+  /* BEFORE TAKEOFF — 이륙 이미지 안 위쪽 빈 하늘(왼쪽 110 · 위 130, 아래는 엔진이 있어 피한다). 이미지가 펼쳐질수록 떠오른다 */
+  .phase.on-photo { position: absolute; left: calc(110 * var(--u)); top: calc(130 * var(--u)); bottom: auto; z-index: 1;
+    opacity: clamp(0, calc(var(--p) * 2.5 - 1.5), 1); transform: translateY(calc((1 - clamp(0, calc(var(--p) * 2.5 - 1.5), 1)) * 30 * var(--u))); }
+  /* Overview 이미지 — 왼쪽은 본문 여백 110, 오른쪽은 화면 끝까지. 왼쪽 모서리만 둥글게 */
+  .ov-img { left: calc(110 * var(--u)); right: 0; height: calc(520 * var(--u)); border-radius: calc(40 * var(--u)) 0 0 calc(40 * var(--u)); overflow: hidden; background: #111a23; }
+  .ov-img img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; filter: saturate(.72) brightness(.9); }
+  .ov-img::after { content: ""; position: absolute; inset: 0; background: #3b4670; mix-blend-mode: soft-light; opacity: .9; pointer-events: none; }   /* 주황빛을 덜고 남보라로 */
+  .after { left: 0; width: 100%; top: calc(510vh + 239.5 * var(--u)); bottom: 0; }   /* 이미지 끝(2698.5 + 510vh) + 350 에 Boarding(3270) */   /* 이륙 이미지 끝(2698.5 + 510vh) + 59 에 BEFORE TAKEOFF(2776) */
 
   /* 제목 + 설명 묶음(Frame 75 · 76) */
   .block { left: calc(110 * var(--u)); display: flex; flex-direction: column; gap: calc(32 * var(--u)); align-items: flex-start; word-break: break-word; }
@@ -83,7 +88,7 @@
      높이는 그대로 두고, 이미지는 가운데 기준으로 채워서 늘어나도 찌그러지지 않는다 */
   /* Core Principle — 이륙 이미지 아래 228. 길 400vh 안에서 무대(화면 높이)가 붙어 있고, 글 아래 이미지 카드 두 장 위로
      내리면 글 → 타임라인이 한 단계씩 뜬다. 이미지 끝(2179.5 + 110vh) + 228 */
-  .cont-track { left: 0; width: 100%; top: calc(1933 * var(--u)); height: 400vh; }   /* Overview 카드 끝(1705) + 228 */
+  .cont-track { left: 0; width: 100%; top: calc(2394 * var(--u)); height: 400vh; }   /* Overview 이미지 끝(2166) + 228 */
   .cont-stage { position: sticky; top: 0; width: 100%; height: 100vh; overflow: hidden; background: #0a1421; }
   /* 이미지 둘 — 글 아래 108(130 + 글 143 + 108 = 381)부터 화면 아래 끝까지, 양끝까지 마진 · 틈 · 모서리 없이 반반 이어 붙인다 */
   .cont-stage > .cp-cards { position: absolute; left: 0; top: calc(381 * var(--u)); width: 100%; bottom: 0; z-index: 0; }
@@ -103,7 +108,7 @@
     background: linear-gradient(180deg, rgba(4,8,15,0) 0%, rgba(4,8,15,.5) 100%); }
   /* 이륙 이미지 — Overview 바로 아래(시안 자리 1642, 텍스트 아래 108). 카드(1700 × 1075)로 올라와 화면 가득 펼쳐진 뒤 잠깐(60vh) 머물렀다 지나간다.
      무대 가운데에 카드가 오므로, 접힌 카드가 1642 에 놓이게 길을 둔다 */
-  .photo-track { left: 0; width: 100%; top: calc((1933 + 228 + 537.5) * var(--u) + 350vh); height: 160vh; }   /* Core Principle 끝 + 228 에 접힌 카드 */
+  .photo-track { left: 0; width: 100%; top: calc((2394 + 228 + 537.5) * var(--u) + 350vh); height: 160vh; }   /* Core Principle 끝 + 228 에 접힌 카드 */
   .photo-stage { position: sticky; top: 0; width: 100%; height: 100vh; }
   .photo { --p: 0; --q: 0; --h: calc(1075 * var(--u) + (100vh - 1075 * var(--u)) * var(--p));
     left: calc(110 * (1 - var(--p)) * var(--u)); top: calc((100vh - var(--h)) / 2); width: calc((1700 + 220 * var(--p)) * var(--u)); height: var(--h);
@@ -311,11 +316,12 @@
   <!-- 히어로 아래 228 에서 본문 시작 — 아래 모든 위치는 이 묶음(.flow) 안에서 시안 숫자 그대로 -->
   <div class="abs flow">
 
-  <!-- Overview — 카드(1700 × 310, 안 여백 80). 끝 1705 -->
-  <section class="abs block ov-card rv" style="top: calc(1395 * var(--u))">
+  <!-- Overview — 글(1395) 아래 108 에 오른쪽 끝까지 붙은 이미지 카드(1646 – 2166) -->
+  <section class="abs block rv" style="top: calc(1395 * var(--u))">
     <h2>Overview</h2>
     <p>MOMEN은 좌석에 앉는 순간부터 여행지에 도착한 이후까지, 비행기 안과 밖의 모든 시간을 하나의 여정으로 잇는 항공사 IFE 서비스입니다.</p>
   </section>
+  <div class="abs ov-img rv" style="top: calc(1646 * var(--u))"><img src="img/overview-plane.jpg" alt="노을 진 남색 하늘을 나는 여객기"></div>
 
   <!-- Core Principle — 처음부터 화면 가득, 내리면 글 → 타임라인 -->
   <section class="abs cont-track" aria-label="Core Principle">
@@ -332,14 +338,15 @@
   <!-- 이륙 이미지 — 카드로 올라와 화면 가득 펼쳐진 뒤 지나간다 -->
   <div class="abs photo-track">
     <div class="photo-stage">
-      <div class="abs photo"><img src="img/takeoff-front.png" alt="밤의 활주로에 선 여객기 정면"></div>
+      <div class="abs photo"><img src="img/takeoff-front.png" alt="밤의 활주로에 선 여객기 정면">
+        <h2 class="phase on-photo">BEFORE TAKEOFF</h2>
+      </div>
     </div>
   </div>
 
   <!-- 여기부터는 이륙 이미지 끝(2698.5 + 510vh)에서 59 아래 BEFORE TAKEOFF(2776) 기준 — 안쪽 위치는 시안 숫자 그대로 -->
   <div class="abs after">
 
-  <h2 class="abs phase rv">BEFORE TAKEOFF</h2>
 
   <!-- BEFORE TAKEOFF 아래(2920)에서 350 -->
   <section class="abs block rv" style="top: calc(3270 * var(--u))">
