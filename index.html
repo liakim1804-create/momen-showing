@@ -28,7 +28,7 @@
   }
   /* 전체 높이 = 디자인 시스템 벤토 끝(9570.75 + 묶음 위치 · 히어로 220vh · 이륙 이미지 560vh · ENJOY 160vh) + 아래 여백 228.
      = 890vh + (9570.75 − 415 − 309.5 + 228) + 이동량 */
-  .page { position: relative; width: 100%; height: calc(890vh + 9623.25 * var(--u) + var(--shift)); }
+  .page { position: relative; width: 100%; height: calc(1010vh + 14894 * var(--u)); }   /* 마지막 지구 트랙 끝 */
 
   /* 히어로 — 처음엔 창문 블라인드가 닫혀 있고, 스크롤하면 블라인드가 위로 걷히며 창밖이 드러난다.
      .hero(길) = 무대 높이 + 스크롤 120vh. 무대(.stage)는 길 안에서 화면 위에 붙어 있다.
@@ -70,6 +70,16 @@
   /* 히어로 끝(100vh + 240, 스크롤 120vh 뒤) + 80 · 워드마크 260 · 400 에서 In to Out Journey — 아래 묶음은 시안 숫자 그대로(1395 → …) */
   .flow { left: 0; top: calc(220vh + (240 + 80 + 260 + 400 - 1395) * var(--u)); width: 100%; bottom: 0; }
   .abs { position: absolute; }
+  /* 마지막 지구 — 이륙 이미지와 같은 카드 → 화면 가득 */
+  .photo-track.end-track { top: calc((12997 + 537.5) * var(--u) + 110vh); height: 170vh; }
+  .photo.end-photo img { filter: none; object-position: 50% 62%; }
+  .end-cta { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); z-index: 1; display: flex; flex-direction: column; align-items: center; gap: calc(48 * var(--u));
+    opacity: clamp(0, calc(var(--p) * 2.5 - 1.5), 1); }
+  .end-mark { font-family: "GT America Expanded", sans-serif; font-weight: 400; font-size: calc(104 * var(--u)); line-height: 1; letter-spacing: 0; white-space: nowrap; }
+  .cta-btn { display: inline-flex; align-items: center; gap: calc(12 * var(--u)); padding: calc(18 * var(--u)) calc(32 * var(--u)); border-radius: 100px; background: #fff; color: #111a23;
+    font-weight: 500; font-size: calc(20 * var(--u)); letter-spacing: calc(-0.4 * var(--u)); text-decoration: none; pointer-events: auto; transition: transform .3s ease, box-shadow .3s ease; }
+  .cta-btn svg { width: calc(20 * var(--u)); height: calc(20 * var(--u)); fill: none; stroke: currentColor; stroke-width: 1.8; }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(0,0,0,.5); }
   /* 상단 비행 타임라인 — 화면 위 고정, 좌우 본문 여백 110. 눈에 띄지 않게 얇고 옅게 */
   .ftop { position: fixed; left: calc(110 * var(--u)); right: calc(110 * var(--u)); top: 22px; z-index: 50; pointer-events: none;
     opacity: 0; transition: opacity .6s ease; mix-blend-mode: normal; }
@@ -96,7 +106,7 @@
     height: calc(520 * var(--u)); border-radius: calc(40 * var(--u)) 0 0 calc(40 * var(--u)); overflow: hidden; background: #111a23; }
   .ov-img img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; filter: saturate(.62) brightness(1.3) contrast(.96); }
   .ov-img::after { content: ""; position: absolute; inset: 0; background: #5a7494; mix-blend-mode: soft-light; opacity: .5; pointer-events: none; }   /* 프로토타입 지구 배경의 스틸 블루로 — 칙칙하지 않게, 보라 기 없이 */
-  .after { left: 0; width: 100%; top: calc(510vh + 239.5 * var(--u)); bottom: 0; }   /* 이미지 끝(2698.5 + 510vh) + 350 에 Boarding(3270) */   /* 이륙 이미지 끝(2698.5 + 510vh) + 59 에 BEFORE TAKEOFF(2776) */
+  .after { left: 0; width: 100%; top: calc(510vh + 1774.5 * var(--u)); bottom: 0; }   /* 이륙 이미지 끝(4694.5 + 510vh) + 350 에 Boarding(3270) */   /* 이미지 끝(2698.5 + 510vh) + 350 에 Boarding(3270) */   /* 이륙 이미지 끝(2698.5 + 510vh) + 59 에 BEFORE TAKEOFF(2776) */
 
   /* 제목 + 설명 묶음(Frame 75 · 76) */
   .block { left: calc(110 * var(--u)); display: flex; flex-direction: column; gap: calc(32 * var(--u)); align-items: flex-start; word-break: break-word; }
@@ -127,7 +137,7 @@
     background: linear-gradient(180deg, rgba(4,8,15,0) 0%, rgba(4,8,15,.5) 100%); }
   /* 이륙 이미지 — Overview 바로 아래(시안 자리 1642, 텍스트 아래 108). 카드(1700 × 1075)로 올라와 화면 가득 펼쳐진 뒤 잠깐(60vh) 머물렀다 지나간다.
      무대 가운데에 카드가 오므로, 접힌 카드가 1642 에 놓이게 길을 둔다 */
-  .photo-track { left: 0; width: 100%; top: calc((2394 + 228 + 537.5) * var(--u) + 350vh); height: 160vh; }   /* Core Principle 끝 + 228 에 접힌 카드 */
+  .photo-track { left: 0; width: 100%; top: calc((3929 + 228 + 537.5) * var(--u) + 350vh); height: 160vh; }   /* Core Principle 끝 + 228 에 접힌 카드 */
   .photo-stage { position: sticky; top: 0; width: 100%; height: 100vh; }
   .photo { --p: 0; --q: 0; --h: calc(1075 * var(--u) + (100vh - 1075 * var(--u)) * var(--p));
     left: calc(110 * (1 - var(--p)) * var(--u)); top: calc((100vh - var(--h)) / 2); width: calc((1700 + 220 * var(--p)) * var(--u)); height: var(--h);
@@ -242,7 +252,6 @@
   .route__time small { font-size: calc(15 * var(--u)); color: #b2bdc5; }
 
   /* 흰 구간 */
-  .light-bg { left: 0; width: 100%; bottom: 0; background: #0a1421; }   /* 흰색 대신 페이지와 같은 남색 */
   .on-light { color: #fff; }
 
   /* 디자인 시스템 벤토 — 1700 폭, 간격 20, 모서리 40.
@@ -359,6 +368,51 @@
     </div>
   </section>
 
+
+  <!-- Design System — Core Principle 끝(2394 + 400vh)에서 228, 텍스트 아래 108 에 벤토(1060). 벤토 끝 3929 + 400vh -->
+  <section class="abs block on-light rv" style="top: calc(2622 * var(--u) + 400vh)">
+    <h2>Design System</h2>
+    <p style="width: auto; white-space: nowrap">여정의 모든 순간이 하나의 경험으로 이어지도록, 일관된 컬러와 타이포그래피,<br>컴포넌트 체계를 구축했습니다. 상황과 모드가 달라져도 익숙하고 편안하게 사용할 수 있습니다.</p>
+  </section>
+
+  <div class="abs bento" style="top: calc(2869 * var(--u) + 400vh)">
+    <div class="tile t-logo rv">
+      <img src="img/earth.jpg" alt="">
+      <span class="lbl">Logo</span>
+      <p class="mark">MOMEN</p>
+      <p class="note"><b>GT America Expanded</b></p>
+    </div>
+    <div class="tile t-type rv">
+      <div class="faces">
+        <div class="face en"><span class="lbl" style="left:0; top:0">Typeface</span><p class="glyph">Aa</p><p class="name">SF Pro Text</p></div>
+        <div class="face ko"><p class="glyph">가</p><p class="name">Apple SD Gothic Neo</p></div>
+      </div>
+    </div>
+    <div class="tile t-color rv">
+      <span class="lbl">Color System</span>
+      <div class="swatches">
+        <div class="sw"><i style="background:#111A23"></i><span><b>Navy</b>#111A23</span></div>
+        <div class="sw"><i style="background:#324961"></i><span><b>Blue 2</b>#324961</span></div>
+        <div class="sw"><i style="background:#53779F"></i><span><b>Blue 1</b>#53779F</span></div>
+        <div class="sw"><i style="background:#FFFFFF"></i><span><b>White</b>#FFFFFF</span></div>
+        <div class="sw"><i style="background:#B2BDC5"></i><span><b>Gray 1</b>#B2BDC5</span></div>
+        <div class="sw"><i style="background:#6E7C86"></i><span><b>Gray 2</b>#6E7C86</span></div>
+      </div>
+    </div>
+    <div class="tile t-grid rv">
+      <p class="construct">MOMEN<i class="h" style="top:0"></i><i class="h" style="bottom:0"></i><i class="v" style="left:0"></i><i class="v" style="right:0"></i></p>
+    </div>
+    <div class="tile t-scale rv">
+      <span class="lbl">Type Scale</span>
+      <div class="rows">
+        <div><span style="font-size: calc(48 * var(--u) * .75); font-weight: 500">Head</span><small>48 · Medium</small></div>
+        <div><span style="font-size: calc(32 * var(--u) * .75); font-weight: 500">Title</span><small>32 · Medium</small></div>
+        <div><span style="font-size: calc(28 * var(--u) * .75); font-weight: 500">Subtitle</span><small>28 · Medium</small></div>
+        <div><span style="font-size: calc(24 * var(--u) * .75)">Body</span><small>24 · Regular</small></div>
+      </div>
+    </div>
+  </div>
+
   <!-- 이륙 이미지 — 카드로 올라와 화면 가득 펼쳐진 뒤 지나간다 -->
   <div class="abs photo-track">
     <div class="photo-stage">
@@ -472,49 +526,14 @@
     </article>
   </div>
 
-  <!-- 여기서부터 끝까지 흰 바탕 — Travel 끝(12791)과 Design System 사이 여백의 가운데(+175)에서 시작 -->
-  <div class="abs light-bg" style="top: calc(8088.75 * var(--u) + 160vh + var(--shift))" aria-hidden="true"></div>
-
-  <!-- Travel 끝(12791 + 160vh)에서 350 · Boarding 처럼 텍스트 아래 108 -->
-  <section class="abs block on-light rv" style="top: calc(8263.75 * var(--u) + 160vh + var(--shift))">
-    <h2>Design System</h2>
-    <p style="width: auto; white-space: nowrap">여정의 모든 순간이 하나의 경험으로 이어지도록, 일관된 컬러와 타이포그래피,<br>컴포넌트 체계를 구축했습니다. 상황과 모드가 달라져도 익숙하고 편안하게 사용할 수 있습니다.</p>
-  </section>
-
-  <div class="abs bento" style="top: calc(8510.75 * var(--u) + 160vh + var(--shift))">
-    <div class="tile t-logo rv">
-      <img src="img/earth.jpg" alt="">
-      <span class="lbl">Logo</span>
-      <p class="mark">MOMEN</p>
-      <p class="note"><b>GT America Expanded</b></p>
-    </div>
-    <div class="tile t-type rv">
-      <div class="faces">
-        <div class="face en"><span class="lbl" style="left:0; top:0">Typeface</span><p class="glyph">Aa</p><p class="name">SF Pro Text</p></div>
-        <div class="face ko"><p class="glyph">가</p><p class="name">Apple SD Gothic Neo</p></div>
-      </div>
-    </div>
-    <div class="tile t-color rv">
-      <span class="lbl">Color System</span>
-      <div class="swatches">
-        <div class="sw"><i style="background:#111A23"></i><span><b>Navy</b>#111A23</span></div>
-        <div class="sw"><i style="background:#324961"></i><span><b>Blue 2</b>#324961</span></div>
-        <div class="sw"><i style="background:#53779F"></i><span><b>Blue 1</b>#53779F</span></div>
-        <div class="sw"><i style="background:#FFFFFF"></i><span><b>White</b>#FFFFFF</span></div>
-        <div class="sw"><i style="background:#B2BDC5"></i><span><b>Gray 1</b>#B2BDC5</span></div>
-        <div class="sw"><i style="background:#6E7C86"></i><span><b>Gray 2</b>#6E7C86</span></div>
-      </div>
-    </div>
-    <div class="tile t-grid rv">
-      <p class="construct">MOMEN<i class="h" style="top:0"></i><i class="h" style="bottom:0"></i><i class="v" style="left:0"></i><i class="v" style="right:0"></i></p>
-    </div>
-    <div class="tile t-scale rv">
-      <span class="lbl">Type Scale</span>
-      <div class="rows">
-        <div><span style="font-size: calc(48 * var(--u) * .75); font-weight: 500">Head</span><small>48 · Medium</small></div>
-        <div><span style="font-size: calc(32 * var(--u) * .75); font-weight: 500">Title</span><small>32 · Medium</small></div>
-        <div><span style="font-size: calc(28 * var(--u) * .75); font-weight: 500">Subtitle</span><small>28 · Medium</small></div>
-        <div><span style="font-size: calc(24 * var(--u) * .75)">Body</span><small>24 · Regular</small></div>
+  <!-- 마지막 — Travel 끝(12769 + 160vh)에서 228. 디자인 시스템 로고 카드의 지구가 카드(1700 × 1075)로 올라와 화면 가득 펼쳐지고, 그 위에 MOMEN 체험하기 -->
+  <div class="abs photo-track end-track">
+    <div class="photo-stage">
+      <div class="abs photo end-photo"><img src="img/earth.jpg" alt="새벽빛이 번지는 지구의 곡면">
+        <div class="end-cta">
+          <p class="end-mark">MOMEN</p>
+          <a class="cta-btn" href="prototype/index.html" target="_blank" rel="noopener">MOMEN 체험하기 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </div>
     </div>
   </div>
@@ -595,7 +614,7 @@
       A = [docY(document.querySelector('.photo-track')),                       // BEFORE TAKEOFF — 이미지가 화면에 붙을 때
            docY(document.querySelector('[data-stage="flight"]')) - vh * .5,    // IN FLIGHT 가 화면 가운데
            docY(document.querySelector('[data-stage="landing"]')) - vh * .5,   // BEFORE LANDING 이 화면 가운데
-           docY(document.querySelector('.light-bg')) - vh * .6,                 // Design System 앞에서 사라진다
+           docY(document.querySelector('.end-track')) - vh * .6,                // 마지막 지구 앞에서 사라진다
            docY(document.querySelector('.ov-img')) - vh];                       // Overview 이미지가 들어올 때부터 보인다
     };
     let ticking = false;
@@ -658,9 +677,9 @@
     update();
   })();
 
-  // 이륙 이미지 — 화면 아래에서 올라와 무대가 화면에 붙을 때까지 펼쳐져 화면 가득(--p), 잠깐 머문 뒤 지나간다
-  (() => {
-    const track = document.querySelector('.photo-track'), photo = track.querySelector('.photo');
+  // 이륙 이미지 · 마지막 지구 — 화면 아래에서 올라와 무대가 화면에 붙을 때까지 펼쳐져 화면 가득(--p)
+  document.querySelectorAll('.photo-track').forEach(track => {
+    const photo = track.querySelector('.photo');
     const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
     const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) { photo.style.setProperty('--p', 1); return; }
@@ -675,7 +694,7 @@
     addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
     addEventListener('resize', update);
     update();
-  })();
+  });
 
   // Core Principle — 글은 섹션이 화면 아래에서 올라오는 동안 미리 뜬다(붙기 전). 붙어 있는 300vh: 타임라인 한 단계씩(.08 · .26 · .44) · 뒤는 머무름
   (() => {
