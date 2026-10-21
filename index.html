@@ -70,6 +70,20 @@
   /* 히어로 끝(100vh + 240, 스크롤 120vh 뒤) + 80 · 워드마크 260 · 400 에서 In to Out Journey — 아래 묶음은 시안 숫자 그대로(1395 → …) */
   .flow { left: 0; top: calc(220vh + (240 + 80 + 260 + 400 - 1395) * var(--u)); width: 100%; bottom: 0; }
   .abs { position: absolute; }
+  /* 상단 비행 타임라인 — 화면 위 고정, 좌우 본문 여백 110. 눈에 띄지 않게 얇고 옅게 */
+  .ftop { position: fixed; left: calc(110 * var(--u)); right: calc(110 * var(--u)); top: 22px; z-index: 50; pointer-events: none;
+    opacity: 0; transition: opacity .6s ease; mix-blend-mode: normal; }
+  .ftop.show { opacity: 1; }
+  .ftop__line { position: relative; height: 1px; background: rgba(255,255,255,.14); }
+  .ftop__fill { position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--f, 0) * 100%); background: rgba(255,255,255,.55); }
+  .ftop__plane { position: absolute; top: 50%; left: calc(var(--f, 0) * 100%); width: 12px; height: 12px; margin: -6px 0 0 -6px; fill: #fff; transform: rotate(90deg); z-index: 1; }   /* 진행 위치 — 작은 비행기 */
+  .ftop ol { list-style: none; position: relative; height: 0; }
+  .ftop li { position: absolute; top: 0; padding-top: 12px; font-size: 10px; line-height: 1; letter-spacing: .08em; color: rgba(178,189,197,.45); white-space: nowrap; transition: color .4s ease; }
+  .ftop li::before { content: ""; position: absolute; top: -3px; width: 5px; height: 5px; border-radius: 50%; background: #3a4654; transition: background .4s ease; }
+  .ftop li:nth-child(1) { left: 0; } .ftop li:nth-child(1)::before { left: 0; }
+  .ftop li:nth-child(2) { left: 50%; transform: translateX(-50%); } .ftop li:nth-child(2)::before { left: 50%; margin-left: -2.5px; }
+  .ftop li:nth-child(3) { right: 0; } .ftop li:nth-child(3)::before { right: 0; }
+  .ftop li.on { color: rgba(255,255,255,.8); } .ftop li.on::before { background: #fff; }
   /* Enjoy 와 같은 폭 — 왼쪽 238, 1444 × 812.25, 모서리 30.08 */
   .ife.enjoy-w { left: calc(238 * var(--u)); width: calc(1444 * var(--u)); border-radius: calc(40 * 1444 / 1920 * var(--u)); }
   .phase-desc.on-photo-desc { position: absolute; top: calc((130 + 196) * var(--u)); z-index: 1;   /* IN FLIGHT 처럼 제목 위쪽에서 196 */
@@ -80,8 +94,8 @@
   /* Overview 이미지 — 왼쪽은 본문 여백 110, 오른쪽은 화면 끝까지. 왼쪽 모서리만 둥글게 */
   .ov-img { left: calc(309.2 * var(--u)); right: 0;   /* 워드마크 왼쪽 끝에 맞춤 */
     height: calc(520 * var(--u)); border-radius: calc(40 * var(--u)) 0 0 calc(40 * var(--u)); overflow: hidden; background: #111a23; }
-  .ov-img img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; filter: saturate(.6) brightness(.88); }
-  .ov-img::after { content: ""; position: absolute; inset: 0; background: #1e3048; mix-blend-mode: soft-light; opacity: .85; pointer-events: none; }   /* 주황빛을 덜고 페이지 남색(#0a1421 계열)으로 — 보라 기 없이 */
+  .ov-img img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; filter: saturate(.62) brightness(1.3) contrast(.96); }
+  .ov-img::after { content: ""; position: absolute; inset: 0; background: #5a7494; mix-blend-mode: soft-light; opacity: .5; pointer-events: none; }   /* 프로토타입 지구 배경의 스틸 블루로 — 칙칙하지 않게, 보라 기 없이 */
   .after { left: 0; width: 100%; top: calc(510vh + 239.5 * var(--u)); bottom: 0; }   /* 이미지 끝(2698.5 + 510vh) + 350 에 Boarding(3270) */   /* 이륙 이미지 끝(2698.5 + 510vh) + 59 에 BEFORE TAKEOFF(2776) */
 
   /* 제목 + 설명 묶음(Frame 75 · 76) */
@@ -303,6 +317,11 @@
 </style>
 </head>
 <body>
+<!-- 상단 비행 타임라인 — 쇼잉 전체가 하나의 비행처럼. 얇은 선 하나와 작은 점 셋, 스크롤한 만큼 채워진다 -->
+<nav class="ftop" aria-label="비행 단계">
+  <div class="ftop__line"><i class="ftop__fill"></i><svg class="ftop__plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div>
+  <ol><li data-k="takeoff">BEFORE TAKEOFF</li><li data-k="flight">IN FLIGHT</li><li data-k="landing">BEFORE LANDING</li></ol>
+</nav>
 <main class="page">
   <!-- 히어로 — 기내 창문, 첫 화면 높이에 꽉. 창문 유리 정가운데 워드마크 -->
   <header class="abs hero">
@@ -381,7 +400,7 @@
   <!-- 모드 화면 아래(5904.5)에서 350 · 설명은 Figma 그대로 제목 위쪽에서 196 아래, 폭 280 -->
   <!-- IN FLIGHT 구간 구분 — 화면 양옆까지 꽉 찬 하늘과 비행기. 모드 화면과 Enjoy 사이 여백의 가운데에서 시작·끝 -->
   <div class="abs band" aria-hidden="true"><img src="img/inflight-plane.jpg" alt=""></div>
-  <h2 class="abs phase rv" style="top: calc(6254.5 * var(--u))">IN FLIGHT</h2>
+  <h2 class="abs phase rv" data-stage="flight" style="top: calc(6254.5 * var(--u))">IN FLIGHT</h2>
   <p class="abs phase-desc rv" style="top: calc(6450.5 * var(--u))">이륙 후에는 세 가지 모드 중 하나를 선택해,<br>원하는 방식으로 기내 시간을 보낼 수 있습니다.</p>
 
   <!-- 설명 아래(6504.5)에서 350 · Figma Frame 78 / Rectangle 11 — x 238, 텍스트 아래 108 -->
@@ -411,7 +430,7 @@
   <div class="abs ife enjoy-w rv" style="top: calc(8510.75 * var(--u) + 160vh)"><img src="img/ife-rest.jpg" alt="MOMEN IFE REST 화면 — 식사 여부, 사운드, 잠들기"></div>
 
   <!-- BEFORE LANDING — Rest 화면 끝(9345 + 160vh)에서 350. BEFORE TAKEOFF → Boarding 과 같은 간격(350 · 텍스트 아래 108) -->
-  <h2 class="abs phase rv" style="top: calc(9673 * var(--u) + 160vh)">BEFORE LANDING</h2>
+  <h2 class="abs phase rv" data-stage="landing" style="top: calc(9673 * var(--u) + 160vh)">BEFORE LANDING</h2>
   <section class="abs block rv" style="top: calc(10167 * var(--u) + 160vh)">
     <h2>Prepare</h2>
     <p>도착 전에 필요한 준비를 확인하고,<br>기내에서 미리 완료할 수 있습니다.</p>
@@ -563,6 +582,38 @@
     img.addEventListener('error', broken);
     if (img.complete && img.naturalWidth === 0) broken();
   });
+
+  // 상단 비행 타임라인 — 이륙 이미지가 화면에 붙는 순간 → IN FLIGHT → BEFORE LANDING 을 점 셋(0 · 50 · 100%)에 두고, 사이는 스크롤한 만큼 채운다.
+  //                    Overview 부터 보이고 Design System(흰 구간) 에 들어서면 사라진다
+  (() => {
+    const nav = document.querySelector('.ftop'), items = [...nav.querySelectorAll('li')];
+    const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+    const docY = el => el.getBoundingClientRect().top + scrollY;
+    let A = [];
+    const measure = () => {
+      const vh = innerHeight;
+      A = [docY(document.querySelector('.photo-track')),                       // BEFORE TAKEOFF — 이미지가 화면에 붙을 때
+           docY(document.querySelector('[data-stage="flight"]')) - vh * .5,    // IN FLIGHT 가 화면 가운데
+           docY(document.querySelector('[data-stage="landing"]')) - vh * .5,   // BEFORE LANDING 이 화면 가운데
+           docY(document.querySelector('.light-bg')) - vh * .6,                 // Design System 앞에서 사라진다
+           docY(document.querySelector('.ov-img')) - vh];                       // Overview 이미지가 들어올 때부터 보인다
+    };
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const y = scrollY;
+      const f = y < A[1] ? .5 * clamp((y - A[0]) / (A[1] - A[0])) : .5 + .5 * clamp((y - A[1]) / (A[2] - A[1]));
+      nav.style.setProperty('--f', f.toFixed(4));
+      nav.classList.toggle('show', y > A[4] && y < A[3]);
+      items[0].classList.toggle('on', y >= A[0]);
+      items[1].classList.toggle('on', y >= A[1]);
+      items[2].classList.toggle('on', y >= A[2]);
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener('resize', () => { measure(); update(); });
+    addEventListener('load', () => { measure(); update(); });
+    measure(); update();
+  })();
 
   // 스크롤하면 떠오르기
   (() => {
