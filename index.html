@@ -83,11 +83,12 @@
      내리면 글 → 타임라인이 한 단계씩 뜬다. 이미지 끝(2179.5 + 110vh) + 228 */
   .cont-track { left: 0; width: 100%; top: calc(2407.5 * var(--u) + 110vh); height: 400vh; }
   .cont-stage { position: sticky; top: 0; width: 100%; height: 100vh; overflow: hidden; background: #0a1421; }
-  /* 이미지 둘 — 글 아래 108(130 + 글 143 + 108 = 381), 화면 양끝까지 마진 · 틈 · 모서리 없이 반반 이어 붙인다(높이 560) */
-  .cp-cards { position: absolute; left: 0; top: calc(381 * var(--u)); width: 100%; height: calc(560 * var(--u)); }
+  /* 이미지 둘 — 글 아래 108(130 + 글 143 + 108 = 381)부터 화면 아래 끝까지, 양끝까지 마진 · 틈 · 모서리 없이 반반 이어 붙인다 */
+  .cont-stage > .cp-cards { position: absolute; left: 0; top: calc(381 * var(--u)); width: 100%; bottom: 0; z-index: 0; }
   .cp-card { position: absolute; top: 0; width: 50%; height: 100%; overflow: hidden; background: #111a23; }
-  .cp-card::before { content: ""; position: absolute; top: 0; bottom: 0; width: 100%; background: url("img/continuity-earth.jpg") 50% 72% / cover no-repeat;
-    filter: saturate(.68) brightness(.95) sepia(.06); }
+  /* 왼쪽 — 기내 창문 줄(Midjourney). 오른쪽 공항과 같은 남색 톤으로 */
+  .cp-card::before { content: ""; position: absolute; top: 0; bottom: 0; width: 100%; background: url("img/core-cabin.jpg") 50% 50% / cover no-repeat;
+    filter: saturate(.75) brightness(.8) sepia(.04) hue-rotate(8deg); }
   .cp-card:nth-child(1) { left: 0; } .cp-card:nth-child(1)::before { left: 0; }
   .cp-card:nth-child(2) { right: 0; }
   /* 오른쪽 — 공항 뷰(Midjourney). 레퍼런스처럼 어둡고 차분하게 눌러 남색 톤으로 */
@@ -114,7 +115,7 @@
     opacity: clamp(0, calc(var(--q) * 2 - 1), 1); transform: translateY(calc((1 - clamp(0, calc(var(--q) * 2 - 1), 1)) * 24 * var(--u))); }
   /* 타임라인 — 이미지 아래쪽, 본문 좌우 여백(110)에 맞춰 화면 폭 가득. 활주로 위는 바탕색으로 살짝 눌러 선이 읽히게.
      스크롤할수록 한 단계씩: 점 · 라벨이 뜨고(--a1~3), 선은 그다음 점까지 그어진다(--l 0→1) */
-  .jt { position: absolute; left: calc(110 * var(--u)); right: calc(110 * var(--u)); top: calc(845 * var(--u)); height: calc(44 * var(--u)); list-style: none; z-index: 2; }   /* 이미지 아래쪽, 본문 좌우 여백 110 */
+  .jt { position: absolute; left: calc(110 * var(--u)); right: calc(110 * var(--u)); bottom: calc(110 * var(--u)); height: calc(44 * var(--u)); list-style: none; z-index: 2; }   /* 이미지 아래쪽, 좌우 · 아래 모두 110 */
   .jt::before, .jt::after { content: ""; position: absolute; left: 0; right: 0; top: calc(5 * var(--u)); height: 1px; }
   .jt::before { background: rgba(255,255,255,.14); opacity: var(--a1, 0); }
   .jt::after { background: rgba(255,255,255,.7); transform-origin: 0 50%; transform: scaleX(var(--l, 0)); }
