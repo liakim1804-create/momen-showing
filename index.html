@@ -16,8 +16,8 @@
   @font-face { font-family: "SF Pro Text"; src: url("fonts/SF-Pro-Text-Medium.otf") format("opentype"); font-weight: 500; }
 
   :root { --u: calc(100vw / 1920);
-    /* BEFORE LANDING 섹션(Prepare + Travel, 끝 11359.75)이 들어가며 Design System 이하가 밀린 양 — 후속 위치 계산에 같이 쓴다 */
-    --shift: calc(3446 * var(--u)); }
+    /* Rest + BEFORE LANDING 섹션(Prepare + Travel, 끝 12791)이 들어가며 Design System 이하가 밀린 양 — 후속 위치 계산에 같이 쓴다 */
+    --shift: calc(4877.25 * var(--u)); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: #0a1421; }
   body {
@@ -75,7 +75,7 @@
   /* 제목 + 설명 묶음(Frame 75 · 76) */
   .block { left: calc(110 * var(--u)); display: flex; flex-direction: column; gap: calc(32 * var(--u)); align-items: flex-start; word-break: break-word; }
   .block h2 { font-weight: 500; font-size: calc(40 * var(--u)); line-height: 1.32; letter-spacing: calc(-0.8 * var(--u)); white-space: nowrap; }
-  .block p { font-weight: 400; font-size: calc(18 * var(--u)); line-height: 1.48; letter-spacing: calc(-0.36 * var(--u)); width: calc(489 * var(--u)); }
+  .block p { font-weight: 400; font-size: calc(18 * var(--u)); line-height: 1.6; letter-spacing: calc(-0.36 * var(--u)); width: calc(489 * var(--u)); }
 
   /* Rectangle 9 — 이륙 이미지. 스크롤하면 --p(0→1)에 따라 양옆으로 꽉 차고 곡률이 사라진다.
      높이는 그대로 두고, 이미지는 가운데 기준으로 채워서 늘어나도 찌그러지지 않는다 */
@@ -103,7 +103,7 @@
     display: flex; flex-direction: column; gap: calc(32 * var(--u)); align-items: flex-start; }
   .journey h2 { font-weight: 500; font-size: calc(40 * var(--u)); line-height: 1.32; letter-spacing: calc(-0.8 * var(--u)); white-space: nowrap;
     opacity: clamp(0, calc(var(--q) * 2), 1); transform: translateY(calc((1 - clamp(0, calc(var(--q) * 2), 1)) * 24 * var(--u))); }
-  .journey p { font-weight: 400; font-size: calc(18 * var(--u)); line-height: 1.48; letter-spacing: calc(-0.36 * var(--u)); white-space: nowrap;
+  .journey p { font-weight: 400; font-size: calc(18 * var(--u)); line-height: 1.6; letter-spacing: calc(-0.36 * var(--u)); white-space: nowrap;
     opacity: clamp(0, calc(var(--q) * 2 - 1), 1); transform: translateY(calc((1 - clamp(0, calc(var(--q) * 2 - 1), 1)) * 24 * var(--u))); }
   /* 타임라인 — 이미지 아래쪽, 본문 좌우 여백(110)에 맞춰 화면 폭 가득. 활주로 위는 바탕색으로 살짝 눌러 선이 읽히게.
      스크롤할수록 한 단계씩: 점 · 라벨이 뜨고(--a1~3), 선은 그다음 점까지 그어진다(--l 0→1) */
@@ -122,7 +122,7 @@
 
   /* BEFORE TAKEOFF */
   .phase { left: calc(110 * var(--u)); top: calc(2776 * var(--u)); font-family: "GT America Expanded", sans-serif; font-weight: 400; font-size: calc(144 * var(--u)); line-height: 1; letter-spacing: calc(-5.76 * var(--u)); white-space: nowrap; }
-  .phase-desc { left: calc(110 * var(--u)); white-space: nowrap;   /* 두 줄 — 줄바꿈은 문장에서 직접 */ font-weight: 400; font-size: calc(18 * var(--u)); line-height: 1.48; letter-spacing: calc(-0.36 * var(--u)); word-break: break-word; }
+  .phase-desc { left: calc(110 * var(--u)); white-space: nowrap;   /* 두 줄 — 줄바꿈은 문장에서 직접 */ font-weight: 400; font-size: calc(18 * var(--u)); line-height: 1.6; letter-spacing: calc(-0.36 * var(--u)); word-break: break-word; }
 
   /* Rectangle 10 자리 — IFE 프로토타입 화면을 그대로(1920 × 1080 화면을 1700 폭으로, 모서리 40 → 35.42) */
   .ife { left: calc(110 * var(--u)); width: calc(1700 * var(--u)); aspect-ratio: 16 / 9; border-radius: calc(40 * 1700 / 1920 * var(--u)); overflow: hidden; background: #000; }
@@ -170,9 +170,9 @@
   .acard:hover .acard__img img { transform: scale(1.02); }
   .acard__body { position: absolute; left: 0; right: 0; bottom: 0; padding: calc(40 * var(--u)); display: flex; flex-direction: column; gap: calc(12 * var(--u)); }   /* 아래 · 좌우 40 */
   .acard h3 { font-weight: 500; font-size: calc(26 * var(--u)); line-height: 1.32; letter-spacing: calc(-0.52 * var(--u)); color: #fff; }
-  .acard p { font-size: calc(16 * var(--u)); line-height: 1.48; letter-spacing: calc(-0.32 * var(--u)); color: #b2bdc5; }
+  .acard p { font-size: calc(16 * var(--u)); line-height: 1.6; letter-spacing: calc(-0.32 * var(--u)); color: #b2bdc5; }
   /* 글자 위아래 행간 여백을 덜어, 글의 실제 끝이 카드 가장자리에서 좌우와 같은 40 에 오게 */
-  .acard p { margin-bottom: -0.24em; } .acard h3 { margin-top: -0.16em; }
+  .acard p { margin-bottom: -0.3em; } .acard h3 { margin-top: -0.16em; }
   @media (prefers-reduced-motion: reduce) { .acard__img img { transition: none; } .acard:hover .acard__img img { transform: none; } }
 
   /* Travel 벤토 — 1700 폭 */
@@ -218,7 +218,7 @@
   /* 카드 안 여백은 상하좌우 모두 44 */
   .tile { --pad: calc(44 * var(--u)); }
   .tile .lbl { position: absolute; left: var(--pad); top: var(--pad); font-size: calc(16 * var(--u)); line-height: 1.4; letter-spacing: calc(-0.32 * var(--u)); color: #b2bdc5; z-index: 2; }
-  .tile .note { position: absolute; left: var(--pad); right: var(--pad); bottom: var(--pad); font-size: calc(16 * var(--u)); line-height: 1.48; letter-spacing: calc(-0.32 * var(--u)); color: #b2bdc5; z-index: 2; }
+  .tile .note { position: absolute; left: var(--pad); right: var(--pad); bottom: var(--pad); font-size: calc(16 * var(--u)); line-height: 1.6; letter-spacing: calc(-0.32 * var(--u)); color: #b2bdc5; z-index: 2; }
   .tile .note b { display: block; font-weight: 500; font-size: calc(24 * var(--u)); color: #fff; letter-spacing: calc(-0.48 * var(--u)); margin-bottom: calc(6 * var(--u)); }
   .tile .note b:last-child { margin-bottom: 0; }
 
@@ -236,7 +236,7 @@
   .faces { position: absolute; left: var(--pad); right: var(--pad); top: var(--pad); bottom: var(--pad); display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--pad); }
   .face { position: relative; }
   .face .glyph { position: absolute; left: 0; top: 48%; transform: translateY(-50%); font-size: calc(140 * var(--u)); line-height: 1; white-space: nowrap; font-weight: 500; }   /* 서체 이름과 같은 왼쪽 선 */
-  .face .name { position: absolute; bottom: 0; font-weight: 500; font-size: calc(24 * var(--u)); line-height: 1.48; letter-spacing: calc(-0.48 * var(--u)); }
+  .face .name { position: absolute; bottom: 0; font-weight: 500; font-size: calc(24 * var(--u)); line-height: 1.6; letter-spacing: calc(-0.48 * var(--u)); }
   /* 글자 안쪽 여백(사이드 베어링)만큼 당겨 잉크가 이름의 첫 글자와 같은 선에 오게 — 실측: Aa 3.73 · 가 5.01 (140 기준) */
   .face.en .glyph { font-family: "SF Pro Text", sans-serif; letter-spacing: calc(-2.8 * var(--u)); transform: translate(-.0267em, -50%); }
   .face.ko .glyph { font-family: "Apple SD Gothic Neo", sans-serif; transform: translate(-.0358em, -50%); }
@@ -376,14 +376,21 @@
     </div>
   </div>
 
-  <!-- BEFORE LANDING — ENJOY 길의 끝(7913.75 + 160vh)에서 350. BEFORE TAKEOFF → Boarding 과 같은 간격(350 · 텍스트 아래 108) -->
-  <h2 class="abs phase rv" style="top: calc(8263.75 * var(--u) + 160vh)">BEFORE LANDING</h2>
-  <section class="abs block rv" style="top: calc(8757.75 * var(--u) + 160vh)">
+  <!-- Rest — ENJOY 길의 끝(7913.75 + 160vh)에서 228, 텍스트 아래 108 에 화면(1700 × 956.25). 끝 9345 -->
+  <section class="abs block rv" style="top: calc(8141.75 * var(--u) + 160vh)">
+    <h2>Rest</h2>
+    <p style="width: auto; white-space: nowrap">식사 여부와 수면 사운드를 고르면, 잠든 동안 조명과 알림이 스스로 낮아집니다.<br>식사 시간처럼 꼭 필요한 순간에만 깨워, 방해 없이 쉴 수 있습니다.</p>
+  </section>
+  <div class="abs ife rv" style="top: calc(8388.75 * var(--u) + 160vh)"><img src="img/ife-rest.jpg" alt="MOMEN IFE REST 화면 — 식사 여부, 사운드, 잠들기"></div>
+
+  <!-- BEFORE LANDING — Rest 화면 끝(9345 + 160vh)에서 350. BEFORE TAKEOFF → Boarding 과 같은 간격(350 · 텍스트 아래 108) -->
+  <h2 class="abs phase rv" style="top: calc(9695 * var(--u) + 160vh)">BEFORE LANDING</h2>
+  <section class="abs block rv" style="top: calc(10189 * var(--u) + 160vh)">
     <h2>Prepare</h2>
     <p>도착 전에 필요한 준비를 확인하고,<br>기내에서 미리 완료할 수 있습니다.</p>
   </section>
-  <!-- 기능 카드 셋 — 540 × 540 정사각형, 간격 40, 오른쪽으로 갈수록 80 씩 내려가는 계단. 맨 아래 카드 끝 9704.75 -->
-  <div class="abs arrival" style="top: calc(9004.75 * var(--u) + 160vh)">
+  <!-- 기능 카드 셋 — 540 × 540 정사각형, 간격 40, 오른쪽으로 갈수록 80 씩 내려가는 계단. 맨 아래 카드 끝 11136 -->
+  <div class="abs arrival" style="top: calc(10436 * var(--u) + 160vh)">
     <article class="acard rv" style="left: 0; top: 0">
       <div class="acard__img"><img src="img/arrival-documents.jpg" alt="" loading="lazy"></div>
       <div class="acard__body"><h3>입국 서류 작성</h3><p>필요한 입국 서류를 확인하고 기내에서 미리 작성합니다.</p></div>
@@ -398,12 +405,12 @@
     </article>
   </div>
 
-  <!-- Travel — Prepare 카드 끝(9704.75)에서 228, 다른 섹션처럼 텍스트 아래 108 에 벤토(830 × 680 · 830 × 1180, 간격 40). 끝 11359.75 -->
-  <section class="abs block rv" style="top: calc(9932.75 * var(--u) + 160vh)">
+  <!-- Travel — Prepare 카드 끝(11136)에서 228, 다른 섹션처럼 텍스트 아래 108 에 벤토(830 × 680 · 830 × 1180, 간격 40). 끝 12791 -->
+  <section class="abs block rv" style="top: calc(11364 * var(--u) + 160vh)">
     <h2>Travel</h2>
     <p style="width: auto; white-space: nowrap">도착 시각과 날씨, 이동 시간에 맞춰 지금 갈 수 있는 장소를 제안합니다.<br>담아 둔 일정은 착륙 후 휴대폰의 여행 보드에서 그대로 이어갑니다.</p>
   </section>
-  <div class="abs travel" style="top: calc(10179.75 * var(--u) + 160vh)">
+  <div class="abs travel" style="top: calc(11611 * var(--u) + 160vh)">
     <article class="tcard t-left rv">
       <img src="img/travel-phone.jpg" alt="QR 코드가 뜬 아이폰">
       <!-- 화면 — 830 × 680 기준 좌표의 네 모서리에 맞춘 원근(사진 속 화면 각도 그대로). 크기는 카드 폭에 맞춰 JS 로 -->
@@ -419,10 +426,10 @@
     </article>
   </div>
 
-  <!-- 여기서부터 끝까지 흰 바탕 — Travel 끝(11359.75)과 Design System 사이 여백의 가운데(+175)에서 시작 -->
+  <!-- 여기서부터 끝까지 흰 바탕 — Travel 끝(12791)과 Design System 사이 여백의 가운데(+175)에서 시작 -->
   <div class="abs light-bg" style="top: calc(8088.75 * var(--u) + 160vh + var(--shift))" aria-hidden="true"></div>
 
-  <!-- Travel 끝(11359.75 + 160vh)에서 350 · Boarding 처럼 텍스트 아래 108 -->
+  <!-- Travel 끝(12791 + 160vh)에서 350 · Boarding 처럼 텍스트 아래 108 -->
   <section class="abs block on-light rv" style="top: calc(8263.75 * var(--u) + 160vh + var(--shift))">
     <h2>Design System</h2>
     <p style="width: auto; white-space: nowrap">여정의 모든 순간이 하나의 경험으로 이어지도록, 일관된 컬러와 타이포그래피,<br>컴포넌트 체계를 구축했습니다. 상황과 모드가 달라져도 익숙하고 편안하게 사용할 수 있습니다.</p>
