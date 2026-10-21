@@ -80,8 +80,8 @@
   /* Overview 이미지 — 왼쪽은 본문 여백 110, 오른쪽은 화면 끝까지. 왼쪽 모서리만 둥글게 */
   .ov-img { left: calc(309.2 * var(--u)); right: 0;   /* 워드마크 왼쪽 끝에 맞춤 */
     height: calc(520 * var(--u)); border-radius: calc(40 * var(--u)) 0 0 calc(40 * var(--u)); overflow: hidden; background: #111a23; }
-  .ov-img img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; filter: saturate(.72) brightness(.9); }
-  .ov-img::after { content: ""; position: absolute; inset: 0; background: #3b4670; mix-blend-mode: soft-light; opacity: .9; pointer-events: none; }   /* 주황빛을 덜고 남보라로 */
+  .ov-img img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; filter: saturate(.6) brightness(.88); }
+  .ov-img::after { content: ""; position: absolute; inset: 0; background: #1e3048; mix-blend-mode: soft-light; opacity: .85; pointer-events: none; }   /* 주황빛을 덜고 페이지 남색(#0a1421 계열)으로 — 보라 기 없이 */
   .after { left: 0; width: 100%; top: calc(510vh + 239.5 * var(--u)); bottom: 0; }   /* 이미지 끝(2698.5 + 510vh) + 350 에 Boarding(3270) */   /* 이륙 이미지 끝(2698.5 + 510vh) + 59 에 BEFORE TAKEOFF(2776) */
 
   /* 제목 + 설명 묶음(Frame 75 · 76) */
