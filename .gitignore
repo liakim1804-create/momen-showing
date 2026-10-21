@@ -7,3 +7,8 @@ img/hero-glass-mask.png
 img/inflight-sky.jpg
 img/takeoff.png
 img/travel-street.jpg
+
+# 원본 큰 폰트 · PNG — 페이지는 WOFF2 · JPG 를 쓴다
+fonts/*.otf
+img/takeoff-front.png
+img/generated/
