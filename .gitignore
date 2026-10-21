@@ -1,0 +1,9 @@
+.DS_Store
+# 쇼잉에서 쓰지 않는 작업용 이미지
+img/kit/
+img/hero-view-wide.jpg
+img/hero-window-closed.jpg
+img/hero-glass-mask.png
+img/inflight-sky.jpg
+img/takeoff.png
+img/travel-street.jpg
