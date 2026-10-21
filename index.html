@@ -17,7 +17,7 @@
 
   :root { --u: calc(100vw / 1920);
     /* Rest + BEFORE LANDING 섹션(Prepare + Travel, 끝 12791)이 들어가며 Design System 이하가 밀린 양 — 후속 위치 계산에 같이 쓴다 */
-    --shift: calc(4999.25 * var(--u)); }
+    --shift: calc(4855.25 * var(--u)); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: #0a1421; }
   body {
@@ -70,6 +70,8 @@
   /* 히어로 끝(100vh + 240, 스크롤 120vh 뒤) + 80 · 워드마크 260 · 400 에서 In to Out Journey — 아래 묶음은 시안 숫자 그대로(1395 → …) */
   .flow { left: 0; top: calc(220vh + (240 + 80 + 260 + 400 - 1395) * var(--u)); width: 100%; bottom: 0; }
   .abs { position: absolute; }
+  /* Enjoy 와 같은 폭 — 왼쪽 238, 1444 × 812.25, 모서리 30.08 */
+  .ife.enjoy-w { left: calc(238 * var(--u)); width: calc(1444 * var(--u)); border-radius: calc(40 * 1444 / 1920 * var(--u)); }
   .phase-desc.on-photo-desc { position: absolute; top: calc((130 + 196) * var(--u)); z-index: 1;   /* IN FLIGHT 처럼 제목 위쪽에서 196 */
     opacity: clamp(0, calc(var(--p) * 2.5 - 1.7), 1); transform: translateY(calc((1 - clamp(0, calc(var(--p) * 2.5 - 1.7), 1)) * 24 * var(--u))); }
   /* BEFORE TAKEOFF — 이륙 이미지 안 위쪽 빈 하늘(왼쪽 110 · 위 130, 아래는 엔진이 있어 피한다). 이미지가 펼쳐질수록 떠오른다 */
@@ -401,21 +403,21 @@
     </div>
   </div>
 
-  <!-- Rest — ENJOY 길의 끝(7913.75 + 160vh)에서 350(Enjoy 와 같은 간격), 텍스트 아래 108 에 화면(1700 × 956.25). 끝 9467 -->
-  <section class="abs block rv" style="top: calc(8263.75 * var(--u) + 160vh)">
+  <!-- Rest — ENJOY 길의 끝(7913.75 + 160vh)에서 350(Enjoy 와 같은 간격), 텍스트 아래 108 에 화면(Enjoy 와 같은 1444 × 812.25, 왼쪽 238). 끝 9323 -->
+  <section class="abs block rv" style="top: calc(8263.75 * var(--u) + 160vh); left: calc(238 * var(--u))">
     <h2>Rest</h2>
     <p style="width: auto; white-space: nowrap">식사 여부와 수면 사운드를 고르면, 잠든 동안 조명과 알림이 스스로 낮아집니다.<br>식사 시간처럼 꼭 필요한 순간에만 깨워, 방해 없이 쉴 수 있습니다.</p>
   </section>
-  <div class="abs ife rv" style="top: calc(8510.75 * var(--u) + 160vh)"><img src="img/ife-rest.jpg" alt="MOMEN IFE REST 화면 — 식사 여부, 사운드, 잠들기"></div>
+  <div class="abs ife enjoy-w rv" style="top: calc(8510.75 * var(--u) + 160vh)"><img src="img/ife-rest.jpg" alt="MOMEN IFE REST 화면 — 식사 여부, 사운드, 잠들기"></div>
 
   <!-- BEFORE LANDING — Rest 화면 끝(9345 + 160vh)에서 350. BEFORE TAKEOFF → Boarding 과 같은 간격(350 · 텍스트 아래 108) -->
-  <h2 class="abs phase rv" style="top: calc(9817 * var(--u) + 160vh)">BEFORE LANDING</h2>
-  <section class="abs block rv" style="top: calc(10311 * var(--u) + 160vh)">
+  <h2 class="abs phase rv" style="top: calc(9673 * var(--u) + 160vh)">BEFORE LANDING</h2>
+  <section class="abs block rv" style="top: calc(10167 * var(--u) + 160vh)">
     <h2>Prepare</h2>
     <p>도착 전에 필요한 준비를 확인하고,<br>기내에서 미리 완료할 수 있습니다.</p>
   </section>
   <!-- 기능 카드 셋 — 540 × 540 정사각형, 간격 40, 오른쪽으로 갈수록 80 씩 내려가는 계단. 맨 아래 카드 끝 11136 -->
-  <div class="abs arrival" style="top: calc(10558 * var(--u) + 160vh)">
+  <div class="abs arrival" style="top: calc(10414 * var(--u) + 160vh)">
     <article class="acard rv" style="left: 0; top: 0">
       <div class="acard__img"><img src="img/arrival-documents.jpg" alt="" loading="lazy"></div>
       <div class="acard__body"><h3>입국 서류 작성</h3><p>필요한 입국 서류를 확인하고 기내에서 미리 작성합니다.</p></div>
@@ -431,11 +433,11 @@
   </div>
 
   <!-- Travel — Prepare 카드 끝(11136)에서 228, 다른 섹션처럼 텍스트 아래 108 에 벤토(830 × 680 · 830 × 1180, 간격 40). 끝 12791 -->
-  <section class="abs block rv" style="top: calc(11486 * var(--u) + 160vh)">
+  <section class="abs block rv" style="top: calc(11342 * var(--u) + 160vh)">
     <h2>Travel</h2>
     <p style="width: auto; white-space: nowrap">도착 시각과 날씨, 이동 시간에 맞춰 지금 갈 수 있는 장소를 제안합니다.<br>담아 둔 일정은 착륙 후 휴대폰의 여행 보드에서 그대로 이어갑니다.</p>
   </section>
-  <div class="abs travel" style="top: calc(11733 * var(--u) + 160vh)">
+  <div class="abs travel" style="top: calc(11589 * var(--u) + 160vh)">
     <article class="tcard t-left rv">
       <img src="img/travel-phone.jpg" alt="QR 코드가 뜬 아이폰">
       <!-- 화면 — 830 × 680 기준 좌표의 네 모서리에 맞춘 원근(사진 속 화면 각도 그대로). 크기는 카드 폭에 맞춰 JS 로 -->
