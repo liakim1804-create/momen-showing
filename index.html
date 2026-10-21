@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MOMEN — IN TO OUT Journey</title>
 <link rel="icon" href="data:,">
+<link rel="preload" href="fonts/Pretendard-Regular.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="fonts/Pretendard-Medium.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="fonts/GT-America-Expanded-Regular-Trial.otf" as="font" type="font/otf" crossorigin>
 <style>
   /* Figma 「Slide 16:9 - 4」(173:2101) 1920 × 12400 그대로.
      1 디자인 px = var(--u) — 화면 폭에 비례해 시안과 같은 비율로 그린다 */
@@ -287,7 +290,8 @@
   .face .name { position: absolute; bottom: 0; font-weight: 500; font-size: calc(24 * var(--u)); line-height: 1.6; letter-spacing: calc(-0.48 * var(--u)); }
   /* 글자 안쪽 여백(사이드 베어링)만큼 당겨 잉크가 이름의 첫 글자와 같은 선에 오게 — 실측: Aa 3.73 · 가 5.01 (140 기준) */
   .face.en .glyph { font-family: "SF Pro Text", sans-serif; letter-spacing: calc(-2.8 * var(--u)); transform: translate(-.0267em, -50%); }
-  .face.ko .glyph { font-family: "Apple SD Gothic Neo", sans-serif; transform: translate(-.0358em, -50%); }
+  .face.ko .glyph { font-family: "Apple SD Gothic Neo", "Pretendard", sans-serif;   /* Mac 이 아니면 함께 배포한 Pretendard 로 */
+    transform: translate(-.0358em, -50%); }
 
   /* 컬러 시스템 */
   .t-color { grid-area: color; }
@@ -306,7 +310,7 @@
 
   /* 글자 크기 체계 */
   .t-scale { grid-area: scale; }
-  .rows { position: absolute; left: var(--pad); right: var(--pad); top: calc(var(--pad) + 52 * var(--u)); bottom: var(--pad); display: flex; flex-direction: column; justify-content: space-between; font-family: "SF Pro Text", "Apple SD Gothic Neo", sans-serif; }
+  .rows { position: absolute; left: var(--pad); right: var(--pad); top: calc(var(--pad) + 52 * var(--u)); bottom: var(--pad); display: flex; flex-direction: column; justify-content: space-between; font-family: "SF Pro Text", "Apple SD Gothic Neo", "Pretendard", sans-serif; }
   .rows div { display: flex; align-items: baseline; justify-content: space-between; gap: calc(24 * var(--u)); padding-bottom: calc(12 * var(--u)); border-bottom: 1px solid rgba(255,255,255,.08); }
   .rows div:last-child { border-bottom: 0; padding-bottom: 0; }
   .rows small { font-family: "Pretendard", sans-serif; font-size: calc(14 * var(--u)); color: #6e7c86; letter-spacing: -0.02em; white-space: nowrap; }
