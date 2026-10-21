@@ -76,7 +76,8 @@
   .phase.on-photo { position: absolute; left: calc(110 * var(--u)); top: calc(130 * var(--u)); bottom: auto; z-index: 1;
     opacity: clamp(0, calc(var(--p) * 2.5 - 1.5), 1); transform: translateY(calc((1 - clamp(0, calc(var(--p) * 2.5 - 1.5), 1)) * 30 * var(--u))); }
   /* Overview 이미지 — 왼쪽은 본문 여백 110, 오른쪽은 화면 끝까지. 왼쪽 모서리만 둥글게 */
-  .ov-img { left: calc(110 * var(--u)); right: 0; height: calc(520 * var(--u)); border-radius: calc(40 * var(--u)) 0 0 calc(40 * var(--u)); overflow: hidden; background: #111a23; }
+  .ov-img { left: calc(309.2 * var(--u)); right: 0;   /* 워드마크 왼쪽 끝에 맞춤 */
+    height: calc(520 * var(--u)); border-radius: calc(40 * var(--u)) 0 0 calc(40 * var(--u)); overflow: hidden; background: #111a23; }
   .ov-img img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; filter: saturate(.72) brightness(.9); }
   .ov-img::after { content: ""; position: absolute; inset: 0; background: #3b4670; mix-blend-mode: soft-light; opacity: .9; pointer-events: none; }   /* 주황빛을 덜고 남보라로 */
   .after { left: 0; width: 100%; top: calc(510vh + 239.5 * var(--u)); bottom: 0; }   /* 이미지 끝(2698.5 + 510vh) + 350 에 Boarding(3270) */   /* 이륙 이미지 끝(2698.5 + 510vh) + 59 에 BEFORE TAKEOFF(2776) */
@@ -319,7 +320,7 @@
   <div class="abs flow">
 
   <!-- Overview — 글(1395) 아래 108 에 오른쪽 끝까지 붙은 이미지 카드(1646 – 2166) -->
-  <section class="abs block rv" style="top: calc(1395 * var(--u))">
+  <section class="abs block rv" style="top: calc(1395 * var(--u)); left: calc(309.2 * var(--u))">   <!-- 워드마크 M 의 왼쪽 끝(309.2)에 맞춤 -->
     <h2>Overview</h2>
     <p>MOMEN은 좌석에 앉는 순간부터 여행지에 도착한 이후까지, 비행기 안과 밖의 모든 시간을 하나의 여정으로 잇는 항공사 IFE 서비스입니다.</p>
   </section>
