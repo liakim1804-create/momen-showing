@@ -83,13 +83,15 @@
      내리면 글 → 타임라인이 한 단계씩 뜬다. 이미지 끝(2179.5 + 110vh) + 228 */
   .cont-track { left: 0; width: 100%; top: calc(2407.5 * var(--u) + 110vh); height: 400vh; }
   .cont-stage { position: sticky; top: 0; width: 100%; height: 100vh; overflow: hidden; background: #0a1421; }
-  /* 이미지 카드 둘 — 글 아래 108(130 + 글 143 + 108 = 381), 830 × 560 두 장 간격 40. 지금은 지구 한 장을 두 카드에 이어 임시로 */
-  .cp-cards { position: absolute; left: calc(110 * var(--u)); top: calc(381 * var(--u)); width: calc(1700 * var(--u)); height: calc(560 * var(--u)); }
-  .cp-card { position: absolute; top: 0; width: calc(830 * var(--u)); height: 100%; border-radius: calc(40 * var(--u)); overflow: hidden; background: #111a23; }
-  .cp-card::before { content: ""; position: absolute; top: 0; bottom: 0; width: calc(1700 * var(--u)); background: url("img/continuity-earth.jpg") 50% 72% / cover no-repeat;
+  /* 이미지 둘 — 글 아래 108(130 + 글 143 + 108 = 381), 화면 양끝까지 마진 · 틈 · 모서리 없이 반반 이어 붙인다(높이 560) */
+  .cp-cards { position: absolute; left: 0; top: calc(381 * var(--u)); width: 100%; height: calc(560 * var(--u)); }
+  .cp-card { position: absolute; top: 0; width: 50%; height: 100%; overflow: hidden; background: #111a23; }
+  .cp-card::before { content: ""; position: absolute; top: 0; bottom: 0; width: 100%; background: url("img/continuity-earth.jpg") 50% 72% / cover no-repeat;
     filter: saturate(.68) brightness(.95) sepia(.06); }
   .cp-card:nth-child(1) { left: 0; } .cp-card:nth-child(1)::before { left: 0; }
-  .cp-card:nth-child(2) { right: 0; } .cp-card:nth-child(2)::before { right: 0; }
+  .cp-card:nth-child(2) { right: 0; }
+  /* 오른쪽 — 공항 뷰(Midjourney). 레퍼런스처럼 어둡고 차분하게 눌러 남색 톤으로 */
+  .cp-card:nth-child(2)::before { right: 0; width: 100%; background: url("img/core-airport.jpg") 50% 50% / cover no-repeat; filter: saturate(.62) brightness(.62) sepia(.08); }
   .cp-card::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 40%; background: linear-gradient(180deg, rgba(17,26,35,0), rgba(17,26,35,.55)); }
   .cont-stage > * { position: relative; z-index: 1; }
   .cont-stage::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; pointer-events: none;
@@ -112,7 +114,7 @@
     opacity: clamp(0, calc(var(--q) * 2 - 1), 1); transform: translateY(calc((1 - clamp(0, calc(var(--q) * 2 - 1), 1)) * 24 * var(--u))); }
   /* 타임라인 — 이미지 아래쪽, 본문 좌우 여백(110)에 맞춰 화면 폭 가득. 활주로 위는 바탕색으로 살짝 눌러 선이 읽히게.
      스크롤할수록 한 단계씩: 점 · 라벨이 뜨고(--a1~3), 선은 그다음 점까지 그어진다(--l 0→1) */
-  .jt { position: absolute; left: calc(158 * var(--u)); right: calc(158 * var(--u)); top: calc(845 * var(--u)); height: calc(44 * var(--u)); list-style: none; z-index: 2; }   /* 카드 안 아래쪽, 카드 가장자리에서 48 */
+  .jt { position: absolute; left: calc(110 * var(--u)); right: calc(110 * var(--u)); top: calc(845 * var(--u)); height: calc(44 * var(--u)); list-style: none; z-index: 2; }   /* 이미지 아래쪽, 본문 좌우 여백 110 */
   .jt::before, .jt::after { content: ""; position: absolute; left: 0; right: 0; top: calc(5 * var(--u)); height: 1px; }
   .jt::before { background: rgba(255,255,255,.14); opacity: var(--a1, 0); }
   .jt::after { background: rgba(255,255,255,.7); transform-origin: 0 50%; transform: scaleX(var(--l, 0)); }
