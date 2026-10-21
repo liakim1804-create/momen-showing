@@ -89,8 +89,10 @@
   .cont-stage > .cp-cards { position: absolute; left: 0; top: calc(381 * var(--u)); width: 100%; bottom: 0; z-index: 0; }
   .cp-card { position: absolute; top: 0; width: 50%; height: 100%; overflow: hidden; background: #111a23; }
   /* 왼쪽 — 기내 창문 줄(Midjourney). 오른쪽 공항과 같은 남색 톤으로 */
-  .cp-card::before { content: ""; position: absolute; top: 0; bottom: 0; width: 100%; background: url("img/core-cabin.jpg") 50% 50% / cover no-repeat;
-    filter: saturate(.75) brightness(.8) sepia(.04) hue-rotate(8deg); }
+  .cp-card::before { content: ""; position: absolute; top: 0; bottom: 0; width: 100%;
+    background: linear-gradient(#3b4670, #3b4670), url("img/core-cabin.jpg") 50% 50% / cover no-repeat;
+    background-blend-mode: soft-light, normal;   /* 청록 기를 빼고 공항 사진과 같은 남보라로 물들인다 — 창빛 밝기는 유지 */
+    filter: saturate(.7) brightness(1.02); }
   .cp-card:nth-child(1) { left: 0; } .cp-card:nth-child(1)::before { left: 0; }
   .cp-card:nth-child(2) { right: 0; }
   /* 오른쪽 — 공항 뷰(Midjourney). 레퍼런스처럼 어둡고 차분하게 눌러 남색 톤으로 */
@@ -611,7 +613,7 @@
     update();
   })();
 
-  // Continuity — 붙어 있는 300vh: 0–.06 멈춤 · .06–.24 글 · .24–.34 머무름 · 타임라인 한 단계씩(.34 · .5 · .66) · .82– 머무름
+  // Core Principle — 글은 섹션이 화면 아래에서 올라오는 동안 미리 뜬다(붙기 전). 붙어 있는 300vh: 타임라인 한 단계씩(.08 · .26 · .44) · 뒤는 머무름
   (() => {
     const track = document.querySelector('.cont-track'), stage = track.querySelector('.cont-stage');
     const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -623,10 +625,11 @@
     let ticking = false;
     const update = () => {
       ticking = false;
-      const t = clamp(-track.getBoundingClientRect().top / (track.offsetHeight - innerHeight));
-      set('--q', easeOut(span(t, .06, .24)));
-      [.34, .5, .66].forEach((a, i) => set('--a' + (i + 1), easeOut(span(t, a, a + .08))));
-      set('--l', ease(span(t, .39, .5)) * .5 + ease(span(t, .55, .66)) * .5);   // 다음 점이 뜰 때 선이 거기까지
+      const top = track.getBoundingClientRect().top, vh = innerHeight;
+      const t = clamp(-top / (track.offsetHeight - vh));
+      set('--q', easeOut(clamp((vh * .85 - top) / (vh * .6))));          // 섹션 위쪽이 화면 85% → 25% 오는 동안 글이 뜬다
+      [.08, .26, .44].forEach((a, i) => set('--a' + (i + 1), easeOut(span(t, a, a + .08))));
+      set('--l', ease(span(t, .14, .26)) * .5 + ease(span(t, .32, .44)) * .5);   // 다음 점이 뜰 때 선이 거기까지
     };
     addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
     addEventListener('resize', update);
