@@ -126,18 +126,25 @@
   .cont-track { left: 0; width: 100%; top: calc(2394 * var(--u)); height: 400vh; }   /* Overview 이미지 끝(2166) + 228 */
   .cont-stage { position: sticky; top: 0; width: 100%; height: 100vh; overflow: hidden; background: #0a1421; }
   /* 이미지 둘 — 글 아래 108(130 + 글 143 + 108 = 381)부터 화면 아래 끝까지, 양끝까지 마진 · 틈 · 모서리 없이 반반 이어 붙인다 */
-  .cont-stage > .cp-cards { position: absolute; left: 0; top: calc(381 * var(--u)); width: 100%; bottom: 0; z-index: 0; }
-  .cp-card { position: absolute; top: 0; width: 50%; height: 100%; overflow: hidden; background: #111a23; }
-  /* 왼쪽 — 기내 창문 줄(Midjourney). 오른쪽 공항과 같은 남색 톤으로 */
-  .cp-card::before { content: ""; position: absolute; top: 0; bottom: 0; width: 100%;
-    background: linear-gradient(#3b4670, #3b4670), url("img/core-cabin.jpg") 50% 50% / cover no-repeat;
-    background-blend-mode: soft-light, normal;   /* 청록 기를 빼고 공항 사진과 같은 남보라로 물들인다 — 창빛 밝기는 유지 */
-    filter: saturate(.7) brightness(1.02); }
-  .cp-card:nth-child(1) { left: 0; } .cp-card:nth-child(1)::before { left: 0; }
-  .cp-card:nth-child(2) { right: 0; }
-  /* 오른쪽 — 공항 뷰(Midjourney). 레퍼런스처럼 어둡고 차분하게 눌러 남색 톤으로 */
-  .cp-card:nth-child(2)::before { right: 0; width: 100%; background: url("img/core-airport.jpg") 50% 50% / cover no-repeat; filter: saturate(.62) brightness(.62) sepia(.08); }
-  .cp-card::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 40%; background: linear-gradient(180deg, rgba(17,26,35,0), rgba(17,26,35,.55)); }
+  .cont-stage > .cp-cards { position: absolute; left: 0; top: calc(381 * var(--u)); width: 100%; bottom: 0; z-index: 0; overflow: hidden; }
+  /* 카드 셋을 옆으로 이어 붙인 띠(화면 폭의 150%) — 스크롤하면 --s(0→1)만큼 왼쪽으로 한 장(화면 반) 밀린다. 처음엔 1·2번째, 끝엔 2·3번째 */
+  .cp-track { position: absolute; top: 0; left: 0; height: 100%; width: 150%; display: flex; will-change: transform;
+    transform: translate3d(calc(var(--s, 0) * -33.3333%), 0, 0); }
+  .cp-card { position: relative; flex: 0 0 33.3333%; height: 100%; overflow: hidden; background: #111a23; }
+  .cp-card::before { content: ""; position: absolute; inset: 0; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat; }
+  /* 1 — 이륙 전. 다른 둘과 같은 남색 톤으로 */
+  .cp-card:nth-child(1)::before { background-image: url("img/takeoff-front.jpg"); filter: saturate(.62) brightness(.7) sepia(.08); }
+  /* 2 — 기내 창문 줄(Midjourney). 청록 기를 빼고 남보라로 물들인다 */
+  .cp-card:nth-child(2)::before { background-image: linear-gradient(#3b4670, #3b4670), url("img/core-cabin.jpg"); background-blend-mode: soft-light, normal; filter: saturate(.7) brightness(1.02); }
+  /* 3 — 공항 뷰(Midjourney). 어둡고 차분하게 눌러 남색 톤으로 */
+  .cp-card:nth-child(3)::before { background-image: url("img/core-airport.jpg"); filter: saturate(.62) brightness(.62) sepia(.08); }
+  .cp-card::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 55%; background: linear-gradient(180deg, rgba(10,20,33,0), rgba(10,20,33,.7)); }
+  /* 카드 글 — 카드가 자리를 잡으면 아래에서 떠오른다(--c1~3). 타임라인(아래 110) 위 56 */
+  .cp-cap { position: absolute; left: calc(110 * var(--u)); bottom: calc(210 * var(--u)); z-index: 1; display: flex; flex-direction: column; gap: calc(12 * var(--u)); white-space: nowrap; }
+  .cp-cap b { font-weight: 500; font-size: calc(28 * var(--u)); line-height: 1.32; letter-spacing: calc(-0.56 * var(--u)); color: #fff; }
+  .cp-card:nth-child(1) .cp-cap { opacity: var(--c1, 0); transform: translateY(calc((1 - var(--c1, 0)) * 24 * var(--u))); }
+  .cp-card:nth-child(2) .cp-cap { opacity: var(--c2, 0); transform: translateY(calc((1 - var(--c2, 0)) * 24 * var(--u))); }
+  .cp-card:nth-child(3) .cp-cap { opacity: var(--c3, 0); transform: translateY(calc((1 - var(--c3, 0)) * 24 * var(--u))); }
   .cont-stage > * { position: relative; z-index: 1; }
   .cont-stage::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; pointer-events: none;
     background: linear-gradient(180deg, rgba(4,8,15,0) 0%, rgba(4,8,15,.5) 100%); }
@@ -370,7 +377,7 @@
         <h2>Core Principle</h2>
         <p>정해진 기능을 오가는 기존 IFE와 달리, MOMEN은 승객의 시간과 상황에 맞춰<br>필요한 경험이 자연스럽게 이어지도록 설계했습니다.</p>
       </div>
-      <div class="cp-cards" aria-hidden="true"><div class="cp-card"></div><div class="cp-card"></div></div>
+      <div class="cp-cards"><div class="cp-track"><div class="cp-card"><div class="cp-cap"><b>탑승 전, 휴대폰과 좌석이 먼저 연결됩니다</b></div></div><div class="cp-card"><div class="cp-cap"><b>비행 중, 지금 상황에 맞는 경험이 이어집니다</b></div></div><div class="cp-card"><div class="cp-cap"><b>착륙 전, 도착 이후의 준비까지 이어집니다</b></div></div></div></div>
       <ol class="jt" aria-label="비행 단계"><li>BEFORE TAKEOFF</li><li>IN FLIGHT</li><li>BEFORE LANDING</li></ol>
     </div>
   </section>
@@ -711,7 +718,7 @@
     const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     const easeOut = t => 1 - Math.pow(1 - t, 3);
     const set = (k, v) => stage.style.setProperty(k, v.toFixed(4));
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { ['--q', '--a1', '--a2', '--a3', '--l'].forEach(k => set(k, 1)); return; }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { ['--q', '--a1', '--a2', '--a3', '--l', '--c1', '--c2', '--c3'].forEach(k => set(k, 1)); set('--s', 1); return; }
     let ticking = false;
     const update = () => {
       ticking = false;
@@ -720,6 +727,10 @@
       set('--q', easeOut(clamp((vh * .85 - top) / (vh * .6))));          // 섹션 위쪽이 화면 85% → 25% 오는 동안 글이 뜬다
       [.08, .26, .44].forEach((a, i) => set('--a' + (i + 1), easeOut(span(t, a, a + .08))));
       set('--l', ease(span(t, .14, .26)) * .5 + ease(span(t, .32, .44)) * .5);   // 다음 점이 뜰 때 선이 거기까지
+      set('--s', ease(span(t, .12, .6)));                                  // 카드 띠가 옆으로 한 장 밀린다
+      set('--c1', easeOut(span(t, .02, .1)) * (1 - easeOut(span(t, .3, .5))));   // 1번 글 — 먼저 뜨고, 카드가 나가며 사라진다
+      set('--c2', easeOut(span(t, .1, .2)));                              // 2번 글
+      set('--c3', easeOut(span(t, .5, .62)));                             // 3번 글 — 카드가 자리 잡은 뒤
     };
     addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
     addEventListener('resize', update);
